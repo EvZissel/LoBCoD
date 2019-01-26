@@ -44,7 +44,7 @@ This pachage contains the following modules:
 ## Examples
 ![Figure 1](./batch_training_set.png)
 
-![Figure 2](./online_test_set.png)
+![Figure 2](./Online_test_set.png)
 
 ![Figure 3](./inpainting.png)
 
