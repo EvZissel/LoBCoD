@@ -1,9 +1,9 @@
 function [cleanI,objective,avgpsnr,sparsity,totTime,alpha,D] = LoBCoD(params)
-%LoBCoD - Local Pursuit and Dictionary update for the CSC model
+% LoBCoD - Local Pursuit and Dictionary update for the CSC model
 %
 %  This function calculates the sparse vector and updates the dictionary in
-%  an batch manner. The function calculate the sparse coding of the traning 
-%  sat and update the local dictionay.
+%  an batch manner. The function calculates the sparse coding of the training 
+%  set and updates the local dictionary.
 % 
 % 
 %   Usage:
@@ -13,28 +13,31 @@ function [cleanI,objective,avgpsnr,sparsity,totTime,alpha,D] = LoBCoD(params)
 % 
 %   Main parameters:
 %
-%       - Ytrain:           Training data set, orderd as a three simensional array
-%       - lambda:           Regularization parameter
-%       - D:                Initial Local dictionaty (of size n^2 x m), Dictionary filters are
-%                           ordered as a colums vector of this matrix 
+%       - Ytrain:           Training data set, orderd as a three
+%                           dimensional array.
+%       - lambda:           Regularization parameter.
+%       - D:                Initial Local dictionaty (of size n^2 x m).
+%                           Dictionary filters are ordered as column 
+%                           of this matrix. 
 %
 %
 %   Optional parameters:
 %
-%       - MAXITER:          Maximal number of iterations (default 500)   
-%       - Train_on:         Boolian pramreter, True for training the dictionary using Ytrain,
-%                           False for preforming only sparse coding without traning D (default True)
+%       - MAXITER:          Maximum number of iterations (default 500).
+%       - Train_on:         Boolean parameter, True for training the 
+%                           dictionary using Ytrain, False for performing 
+%                           only sparse coding without training D (default True).
 % 
 %
 %   Output:
-%       - cleanI:           The recunstracted train images 
-%       - objective:        The average objective value on the traning set
-%       - avgpsnr:          Average PSNR value calculated over the Traning set 
-%       - sparsity:         The ratio between the number of nen-zeros to
-%                           the total length of the sparse vector  
-%       - totTime:          A times vector corresponding to each iteration
-%       - alpha:         	The sparse needles 
-%       - D:                Output Local Dictionaty 
+%       - cleanI:           The reconstructed training images. 
+%       - objective:        The average objective value on the training set.
+%       - avgpsnr:          Average PSNR value calculated over the training set. 
+%       - sparsity:         The ratio between the number of non-zeros to
+%                           the total length of the sparse vector.  
+%       - totTime:          A time vector containing the iteration timestamps.
+%       - alpha:         	The output sparse needles. 
+%       - D:                The output local dictionary. 
 % 
 % 
 % References:
@@ -96,7 +99,7 @@ sz =  cell(1,N);
 Valpha = cell(1,N);
 
 
-%% ----- Sparse Coding Prameters -------
+%% ----- Sparse Coding Parameters -------
 
 
 G = D'*D;
@@ -145,7 +148,7 @@ sparsity    = zeros(1,MAXITER);
 totTime     = zeros(1,MAXITER);
 
 
-%% ----- Optimixation parameters ------- 
+%% ----- Optimization parameters ------- 
 
 u = 0*D;
 mu2 = 0.8;
@@ -250,14 +253,14 @@ for outerIter = 1 : MAXITER
         
     end   
     
-    %Replace unused atoms
+    % Replace unused atoms
     if (Train_on)
         alpha_flat = cell2mat(alphaN);
         unused_sigs= 1 : size(alpha_flat,2);
         replaced_atoms = zeros(1,m);
         for i = 1 : m   
 
-            idxs = find(alpha_flat(i,:)); %find all the example
+            idxs = find(alpha_flat(i,:)); %find all the examples
             if length(idxs) < 1
                 maxsignals = 5000;
                 perm = randperm(length(unused_sigs));
@@ -301,7 +304,7 @@ for outerIter = 1 : MAXITER
     
     %Print results 
     if (Train_on) 
-     fprintf('OterIter = %d, Obj = %.3d, Sparsity = %.3f, Avg-PSNR = %.3f, Total-Time (min) = %.3f \n',...
+     fprintf('OuterIter = %d, Obj = %.3d, Sparsity = %.3f, Avg-PSNR = %.3f, Total-Time (min) = %.3f \n',...
         outerIter,objective(outerIter),sparsity(outerIter),avgpsnr(outerIter),totTime(outerIter)/60);
     end
     

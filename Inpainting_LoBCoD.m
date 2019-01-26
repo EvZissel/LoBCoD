@@ -1,7 +1,7 @@
 function [cleanI,objective,avgpsnr,sparsity,totTime,alpha,D] = Inpainting_LoBCoD(params)
 % inpainting - for set of N image
 % 
-% Inpainting_LoBCoD - Inpainting using LoBCoD algorithm
+% Inpainting_LoBCoD - Inpainting using the LoBCoD algorithm.
 %
 % 
 % 
@@ -12,32 +12,34 @@ function [cleanI,objective,avgpsnr,sparsity,totTime,alpha,D] = Inpainting_LoBCoD
 % 
 %   Main parameters:
 %
-%       - Y_Original:       The original uncorrupted images
-%       - Y_noisy:          The corrupted image 
-%       - lmnI:             The mean of the uncorrupted images
-%       - noisyImean:       The mean of the corrupted image
-%       - M:                The corrupted mask
-%       - lambda:           Regularization parameter
-%       - D:                Initial Local dictionaty (of size n^2 x m), Dictionary filters are
-%                           ordered as a colums vector of this matrix 
+%       - Y_Original:       The original uncorrupted images.
+%       - Y_noisy:          The corrupted images.
+%       - lmnI:             The mean of the uncorrupted images.
+%       - noisyImean:       The mean of the corrupted images.
+%       - M:                The corrupted masks.
+%       - lambda:           Regularization parameter.
+%       - D:                Initial Local dictionaty (of size n^2 x m).
+%                           Dictionary filters are ordered as the columns 
+%                           of this matrix.
 %
 %
 %   Optional parameters:
 %
-%       - MAXITER:          Maximal number of iterations (default 500)   
-%       - Train_on:         Boolian pramreter, True for training the dictionary using Y_noisy,
-%                           False for preforming only sparse coding without traning D (default False)
+%       - MAXITER:          Maximum number of iterations (default 500).
+%       - Train_on:         Boolean paramreter, True for training the 
+%                           dictionary using Y_noisy, False for performing 
+%                           only sparse coding without training D (default False).
 % 
 %
 %   Output:
-%       - cleanI:           The recunstracted train images 
-%       - objective:        The average objective value on the traning set
-%       - avgpsnr:          Average PSNR value calculated over the Traning set 
-%       - sparsity:         The ratio between the number of nen-zeros to
-%                           the total length of the sparse vector  
-%       - totTime:          A times vector corresponding to each iteration
-%       - alpha:         	The sparse needles 
-%       - D:                Output Local Dictionaty 
+%       - cleanI:           The reconstructed training images.
+%       - objective:        The average objective value on the training set.
+%       - avgpsnr:          Average PSNR value calculated over the training set.
+%       - sparsity:         The ratio between the number of non-zeros to
+%                           the total length of the sparse vector.
+%       - totTime:          A time vector containing the iteration timestamps.
+%       - alpha:         	The output sparse needles.
+%       - D:                The output local dictionaty.
 % 
 % 
 % References:
@@ -47,7 +49,7 @@ function [cleanI,objective,avgpsnr,sparsity,totTime,alpha,D] = Inpainting_LoBCoD
 
 %% ----- Constants -------%% 
 
-noiseSD = 0; %Optional
+noiseSD = 0; % Optional
 
 %% ----- Input Parameters -------
 
@@ -66,24 +68,24 @@ end
 if isfield(params,'lambda')
     lambda = params.lambda;
 else
-    error('\lambda missing!\n');
+    error('lambda missing!\n');
 end
 if isfield(params,'lmnI')
     lmnI = params.lmnI;
 else
-    error('\mean of the uncorrupted images missing!\n');
+    error('mean of the uncorrupted images missing!\n');
 end
 
 if isfield(params,'noisyImean')
     noisyImean = params.noisyImean;
 else
-    error('\mean of the corrupted image missing!\n');
+    error('mean of the corrupted image missing!\n');
 end
 
 if isfield(params,'M')
     M = params.M;
 else
-    error('\mask missing!\n');
+    error('mask missing!\n');
 end
 
 if isfield(params,'D')
@@ -120,11 +122,11 @@ sz =  cell(1,N);
 
 
 
-%% ----- Sparse Coding Prameters -------
+%% ----- Sparse Coding Parameters -------
 
 
 param = [];
-%param.L = 20;
+%param.L = 6;
 param.lambda = lambda;
 param.mode = 2;
 sumsec     = 0;
@@ -177,7 +179,7 @@ sparsity    = zeros(1,MAXITER);
 totTime     = zeros(1,MAXITER);
 L1          = zeros(1,MAXITER); 
 
-%% ----- Optimixation parameters ------- 
+%% ----- Optimization parameters ------- 
 
 u = 0*D;
 mu2 = 0.8;
@@ -300,8 +302,8 @@ for outerIter = 1 : MAXITER
     
     totTime(outerIter) = sumsec;
     
-    %Print results 
-    fprintf('OterIter = %d, Obj = %.3d, Sparsity = %.3f, Avg-PSNR = %.3f, Avg-PSNR_corr = %.3f, L1 = %.3f, Total-Time (min) = %.3f \n',...
+    % Print results 
+    fprintf('OuterIter = %d, Obj = %.3d, Sparsity = %.3f, Avg-PSNR = %.3f, Avg-PSNR_corr = %.3f, L1 = %.3f, Total-Time (min) = %.3f \n',...
         outerIter,objective(outerIter),sparsity(outerIter),avgpsnr(outerIter),avgpsnr_corrupt(outerIter),L1(outerIter),totTime(outerIter)/60);
     
 end

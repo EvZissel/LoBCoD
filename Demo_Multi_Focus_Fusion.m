@@ -1,13 +1,13 @@
-% Multi-focus Image Fusion Demo scropt
+% Multi-focus Image Fusion Demo script.
 
-% This script showes an example for appling Multi-Focus image fusion using
-% LoBCoD. The script loads the following variables:
+% This script demonstrates applying LoBCoD for Multi-Focus image fusion.
+% The script loads the following variables:
 %  
 % (1) Two images to fuse in the variables "Background_inFocus" and
 %     "Foreground_inFocus".
-% (2) Initional dictionary for sparsify the edge-components in "D_init".
+% (2) Initial dictionary to represent the edge-components in "D_init".
 % (3) Gradient matrices in "Gx" and "Gy" for calculating the gradient in
-%     the horisontal and vertical directions, and the natrix 
+%     the horizontal and vertical directions, and the natrix 
 %     "G = eye + mu*(Gx'*Gx+Gy'*Gy)".
 % 
 
@@ -113,7 +113,7 @@ ours_lab(:,:,2) = (A{1}>=A{2}).*double(Background_inFocus_lab(:,:,2))+(A{1}<A{2}
 ours_lab(:,:,3) = (A{1}>=A{2}).*double(Background_inFocus_lab(:,:,3))+(A{1}<A{2}).*double(Foreground_inFocus_lab(:,:,3));
 
 
-%PSNR calculation without the boundaries
+% PSNR calculation without the boundaries
 PSNR = 20*log10((255*sqrt(numel(I{1}(8:sz{1}-8,8:sz{1}-8))) / norm(reshape(fused_image_e(8:sz{1}-8,8:sz{1}-8)+fused_image_b(8:sz{1}-8,8:sz{1}-8) - I_original(8:sz{1}-8,8:sz{1}-8),1,[]))));
 fprintf('PSNR: %.3f\n',PSNR);
 

@@ -1,14 +1,15 @@
 function [cleanI,objective,avgpsnr,sparsity,totTime,alpha,D,objective_Test,time_Test,k_vec] = LoBCoD_online(params)
-%LoBCoD_online - Local Pursuit and Dictionary update for the CSC model in
-%online fashion
+% LoBCoD_online - Local Pursuit and Dictionary update for the CSC model in
+% an online fashion
 %
 % 
 %  This function calculates the sparse vector and updates the dictionary in
-%  an online manner. At each iteration the function randomly picks one traning image,
-%  calculating its sparse representation and updates the local dictionary
-%  acording to this training image. Every "eval_step" traning images (iterations) the function
-%  evaluates the objective value on the given testing set and reterns in "objective_Test" 
-%  a vector of the results.
+%  an online manner. At each iteration, the function randomly selects a 
+%  training image, calculates its sparse representation and updates the local 
+%  dictionary according to the current training image. 
+%  Every "eval_step" training images (iterations), the function evaluates the 
+%  objective value on the given testing set and returns a vector of the 
+%  results in "objective_Test".
 % 
 %   Usage:
 % 
@@ -16,31 +17,40 @@ function [cleanI,objective,avgpsnr,sparsity,totTime,alpha,D,objective_Test,time_
 % 
 %   Main parameters:
 %
-%       - Ytrain:           Training data set, orderd as a three simensional array
-%       - lambda:           Regularization parameter
-%       - D:                Initial Local dictionaty (of size n^2 x m), Dictionary filters are
-%                           ordered as a colums vector of this matrix 
-%       - Ytest:            Testing data set, orderd as a three dimensional array
+%       - Ytrain:           Training data set, orderd as a three
+%                           dimensional array.
+%       - lambda:           Regularization parameter.
+%       - D:                Initial Local dictionaty (of size n^2 x m).
+%                           Dictionary filters are ordered as column 
+%                           of this matrix. 
+%       - Ytest:            Testing data set, orderd as a three dimensional
+%                           array.
 %
 %
 %   Optional parameters:
 %
-%       - MAXITER:          Maximal number of epochs (default 201)   
-%       - eval_step:        Number of traning images between calculating the test set pursuit (default 200)
+%       - MAXITER:          Maximum number of epochs (default 201).   
+%       - eval_step:        Number of training images used during the 
+%                           training phase. An evaluation phase (on the 
+%                           test set) takes place prior to the next training 
+%                           phase (default 200 images in each training cycle).
 % 
 %
 %   Output:
-%       - cleanI:           The recunstracted train images 
-%       - objective:        The objective value on the traning set
-%       - avgpsnr:          Average PSNR value calculated over the traning set 
-%       - sparsity:         The ratio between the number of nen-zeros to
-%                           The total length of the sparse vector, avarage on the traning set  
-%       - totTime:          A time vector corresponds to each epoch 
-%       - alpha:         	The sparse needles 
-%       - D:                Output Local Dictionaty 
-%       - objective_Test:   The objective value calcolated on the tasting set
-%       - time_Test:        A time vector that stors the time of the points in objective_Test
-%       - k_vec:            A vector that stors the iteration number of the points in objective_Test
+%       - cleanI:           The reconstructed training images. 
+%       - objective:        The objective value on the training set.
+%       - avgpsnr:          Average PSNR value calculated over the training set. 
+%       - sparsity:         The ratio between the number of non-zeros to
+%                           the total length of the sparse vector, averaged
+%                           on the training set.
+%       - totTime:          A time vector containing the iteration timestamps.
+%       - alpha:         	The output sparse needles.
+%       - D:                The output local dictionaty.
+%       - objective_Test:   The objective value calculated on the testing set.
+%       - time_Test:        A time vector that stores the timestamps of the
+%                           points in objective_Test.
+%       - k_vec:            A vector that stores the iteration number of 
+%                           the points in objective_Test.
 % 
 % 
 % References:
@@ -108,7 +118,7 @@ sz =  cell(1,N);
 Valpha = cell(1,N);
 
 
-%% ----- Sparse Coding Prameters -------
+%% ----- Sparse Coding Parameters -------
 
 
 G = D'*D;
@@ -162,7 +172,7 @@ objective_Test(1) = 0;
 time_Test(1) = 0;             
 k_vec(1) = 0;
 
-%% ----- Optimixation parameters ------- 
+%% ----- Optimization parameters ------- 
 
 u = 0*D;
 mu2 = 0.8;
@@ -202,7 +212,7 @@ for outerIter = 1 : MAXITER
         i = pi(ii);
         p = randperm(n^2);
         for j=1:n^2
-           k = p(j); %Layers are chosen at random order
+           k = p(j); % Layers are chosen at random order
            dx = floor((k-0.5)/n)+1; 
            dy = k-(floor((k-0.5)/n))*n;
            cur_sz = sz{i} + 2*(n-1) - [dy-1, dx-1];
@@ -279,13 +289,13 @@ for outerIter = 1 : MAXITER
         
     end   
     
-    %Replace unused atoms
+    % Replace unused atoms
     alpha_flat = cell2mat(alphaN);
     unused_sigs= 1 : size(alpha_flat,2);
     replaced_atoms = zeros(1,m);
     for i = 1 : m   
         
-        idxs = find(alpha_flat(i,:)); %find all the example
+        idxs = find(alpha_flat(i,:)); % find all the examples
         if length(idxs) < 1
             maxsignals = 5000;
             perm = randperm(length(unused_sigs));
@@ -326,8 +336,8 @@ for outerIter = 1 : MAXITER
     
     totTime(outerIter) = sumsec;
     
-    %Print results 
-     fprintf('OterIter = %d, Obj = %.3d, Sparsity = %.3f, Avg-PSNR = %.3f, Total-Time (min) = %.3f \n',...
+    % Print results 
+     fprintf('OuterIter = %d, Obj = %.3d, Sparsity = %.3f, Avg-PSNR = %.3f, Total-Time (min) = %.3f \n',...
         outerIter,objective(outerIter),sparsity(outerIter),avgpsnr(outerIter),totTime(outerIter)/60);
     
 end

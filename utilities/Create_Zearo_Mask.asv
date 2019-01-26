@@ -1,13 +1,12 @@
 function [I,noisyI,M,noisyImean,lmnI] = Create_Zearo_Mask(imgs_path,n)
 
-% This function creates images with holes and substructs its mean using
-% the uncorrupted pixels   
+% This function creates images with holes and substructs its mean using the un 
           
     files = dir(imgs_path);
     j=1;
     for i=3:length(files)
             I{j} = imread(strcat(imgs_path,'/',files(i).name));
-            %I{j} = rgb2gray(I{j}); % uncomment for color images
+            I{j} = rgb2gray(I{j});
             I{j} = double(I{j});
             j=j+1;
     end
@@ -23,7 +22,7 @@ function [I,noisyI,M,noisyImean,lmnI] = Create_Zearo_Mask(imgs_path,n)
         sz{image} = size(I{image}); 
         rng(0);
         M{image} = ones(sz{image});
-        M{image}(rand(sz{image}) < 0.50) = 0; % masks 50% of the pixels
+        M{image}(rand(sz{image}) < 0.50) = 0;
         noisyI{image} = M{image}.*I{image};
     
 

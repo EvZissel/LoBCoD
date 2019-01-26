@@ -1,9 +1,9 @@
-%A Demo script for the online runing of the LoBCoD algorithm
+% A Demo script for the online execution of the LoBCoD algorithm.
 
-% This demo makes use of 40 images uniformaly sampeled from the mirflickr
+% This demo makes use of 40 images uniformly sampled from the 'mirflickr'
 % dataset for training the dictionary, and 5 different images for a testing
-% set from the same source. For speeding up computations, The images are reduced
-% to the size of 256x256 pixels, normalied, and mean substructed.  
+% set from the same source. For speeding up the computations, The images 
+% are cropped to the size of 256x256 pixels, normalized, and mean substructed.  
 
 
 addpath mexfiles;
@@ -16,8 +16,8 @@ vl_setup();
 
 imgs_path = 'datasets\mirflickr_40samples_train';
 imgs_path_test = 'datasets\mirflickr_test';
-n = 8; %patch size
-m = 81; %number of filters
+n = 8; % patch size
+m = 81; % number of filters
 [I,I_test,~,~] = Preparation(imgs_path,imgs_path_test,n);
 
 D = randn(n^2,m);
@@ -27,9 +27,9 @@ D = D*Dn;
 params = [];
 params.Ytrain = I;
 params.lambda =  0.1;
-params.MAXITER = 201; %default maximun number of epochs
+params.MAXITER = 201; % default maximum number of epochs
 params.D = D;
-params.eval_step = 200; %number of trining images between two evaluation of the test set   
+params.eval_step = 200; % number of training images in the training phase (used before the evaluation stage).
 params.Ytest = I_test;
 
 %% Run LoBCoD
@@ -75,4 +75,3 @@ ylabel('Objective on test set','fontsize',10)
 title('The Objective value on the test set');
 legend('LoBCoD')
 grid on
-
