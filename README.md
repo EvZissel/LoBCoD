@@ -40,7 +40,6 @@ This pachage contains the following modules:
 | Demo_inpainting.m         | A demo script demonstrates implementation for inpainting 
 | Demo_Multi_Focus_Fusion.m | A demo script for implementation of multi-focus image fusion 
 
-
 ## Examples
 ![Figure 1](./batch_training_set.png)
 
@@ -51,6 +50,6 @@ This pachage contains the following modules:
 ![Figure 3](./inpainting.png)
 
 <p align="center">
-  <img width="460" height="300" src="./bird.png">
+  <img src="./bird.png">
 </p>
 
