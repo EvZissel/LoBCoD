@@ -48,9 +48,9 @@ This pachage contains the following modules:
   <img width="460" height="300" src="./Online_test_set.png">
 </p>
 
-![Figure 2](./Online_test_set.png)
-
 ![Figure 3](./inpainting.png)
 
-![Figure 4](./bird.png)
+<p align="center">
+  <img width="460" height="300" src="./bird.png">
+</p>
 
