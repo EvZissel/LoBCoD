@@ -28,7 +28,7 @@ This code is self-contained and includes all the precompiled packages.
 ```
 
 ## Description
-This pachage contains the following main modules:
+This package contains the following main modules:
 
 | Module                    | Description 
 |---------------------------|---
