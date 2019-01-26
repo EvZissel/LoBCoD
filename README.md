@@ -33,9 +33,9 @@ This pachage contains the following modules:
 | Module                    | Description 
 |---------------------------|---
 | LoBCoD.m                  | The main function that implements the batch LoBCoD algorithm 
-| Demo.m                    | A demo script demonstrates the batch LoBCoD on the 'Fruit' dataset 
+| Demo.m                    | A demo script demonstrates the batch LoBCoD on the `Fruit` dataset 
 | LoBCoD_online.m           | A function that implements the online LoBCoD algorithm 
-| Demo_online.m             | A demo script demonstrates the online LoBCoD on a subset of 'mirflickr' dataset 
+| Demo_online.m             | A demo script demonstrates the online LoBCoD on a subset of `mirflickr` dataset 
 | inpainting_LoBCoD.m       | A function that implements the inpainting application 
 | Demo_inpainting.m         | A demo script demonstrates implementation for inpainting 
 | Demo_Multi_Focus_Fusion.m | A demo script for implementation of multi-focus image fusion 
@@ -43,6 +43,10 @@ This pachage contains the following modules:
 
 ## Examples
 ![Figure 1](./batch_training_set.png)
+
+<p align="center">
+  <img width="460" height="300" src="./Online_test_set.png">
+</p>
 
 ![Figure 2](./Online_test_set.png)
 
