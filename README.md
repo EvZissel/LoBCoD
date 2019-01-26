@@ -1,7 +1,7 @@
 # LoBCoD
 A Local Block Coordinate Descent Algorithm for the CSC Model
 
-This is the Matlab Package for the LoBCoD algorithm, available on [arXiv:1811.00312](https://arxiv.org/abs/1811.00312)
+This is the Matlab package that implements the LoBCoD algorithm, presented in [arXiv:1811.00312](https://arxiv.org/abs/1811.00312)
 ```
 E. Zisselman, J. Sulam and M. Elad, "A Local Block Coordinate Descent Algorithm
 for the Convolutional Sparse Coding Model". 
@@ -49,7 +49,7 @@ The training curves of the LoBCoD algorithm using `Demo.m` (trained on the _Frui
 
 The converging objective value of the test set using `Demo_online.m` (trained on a subset of _mirflickr_ dataset): 
 <p align="center">
-  <img src="./Online_test_set.png">
+  <img width="520" height="380" src="./Online_test_set.png">
 </p>
 
 Example of inpainting of the corrupted _Barbara_ image using `Demo_inpainting.m`:
@@ -57,7 +57,7 @@ Example of inpainting of the corrupted _Barbara_ image using `Demo_inpainting.m`
   <img src="./inpainting.png">
 </p>
 
-Example of multi-focus image fusion of the images _Bird_ (foreground and background focus) using `Demo_Multi_Focus_Fusion.m`:
+Example of multi-focus image fusion of the images _Bird_ (background and foreground in-focus) using `Demo_Multi_Focus_Fusion.m`:
 <p align="center">
   <img src="./bird.png">
 </p>
