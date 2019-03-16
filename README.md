@@ -61,4 +61,3 @@ Example of multi-focus image fusion of the images _Bird_ (background and foregro
 <p align="center">
   <img src="./bird.png">
 </p>
-
