@@ -1,0 +1,4 @@
+spams-matlab/* linguist-vendored
+mexfiles/* linguist-vendored
+vlfeat/* linguist-vendored
+
