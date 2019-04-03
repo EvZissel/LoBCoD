@@ -30,15 +30,17 @@ This code is self-contained and includes all the precompiled packages.
 ## Description
 This package contains the following main modules:
 
-| Module                    | Description 
-|---------------------------|---
-| LoBCoD.m                  | The main function that implements the batch LoBCoD algorithm 
-| Demo.m                    | A demo script that applies the function `LoBCoD.m` on the _Fruit_ dataset 
-| LoBCoD_online.m           | A function that implements the online LoBCoD algorithm 
-| Demo_online.m             | A demo script that applies `LoBCoD_online.m` on a subset of _mirflickr_ dataset 
-| inpainting_LoBCoD.m       | A function that implements inpainting using `LoBCoD.m`
-| Demo_inpainting.m         | A demo script that applies `inpainting_LoBCoD.m`  
-| Demo_Multi_Focus_Fusion.m | A demo script for implementing multi-focus image fusion 
+| Module                       | Description 
+|------------------------------|---
+| LoBCoD.m                     | The main function that implements the batch LoBCoD algorithm 
+| Demo.m                       | A demo script that applies the function `LoBCoD.m` on the _Fruit_ dataset 
+| LoBCoD_online.m              | A function that implements the online LoBCoD algorithm 
+| Demo_online.m                | A demo script that applies `LoBCoD_online.m` on a subset of _mirflickr_ dataset 
+| inpainting_LoBCoD.m          | A function that implements inpainting using `LoBCoD.m`
+| Demo_inpainting.m            | A demo script that applies `inpainting_LoBCoD.m`  
+| Demo_Multi_Focus_Fusion.m    | A demo script for implementing multi-focus image fusion 
+| Demo_Multi_Exposure_Fusion.m | A demo script for implementing multi-exposure image fusion 
+| Demo_Text_Image_Denoising.m  | A demo script for implementing salt-and-pepper text image denoising 
 
 ## Examples
 
@@ -60,4 +62,14 @@ Example of inpainting of the corrupted _Barbara_ image using `Demo_inpainting.m`
 Example of multi-focus image fusion of the images _Bird_ (background and foreground in-focus) using `Demo_Multi_Focus_Fusion.m`:
 <p align="center">
   <img src="./figures/bird.png">
+</p>
+
+Example of multi-exposure image fusion of the images _Window_ using `Demo_Multi_Exposure_Fusion.m`:
+<p align="center">
+  <img src="./figures/window.png">
+</p>
+
+Example of salt-and-pepper text image denoising using `Demo_Text_Image_Denoising.m`:
+<p align="center">
+  <img src="./figures/text_denoising.png">
 </p>
