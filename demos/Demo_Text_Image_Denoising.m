@@ -52,11 +52,11 @@ end
 
 %% Train a dictionary on noisy images
 %  Note: For training on clean images, replace 'x_test_noisy' with 'x_train'
-lambda_train = 1;
+lambda_train = 0.1;
 if (TrainOn)
     x_test_noisy_mean = cell(size(x_test_noisy));
     for i=1:size(x_train,1)
-        x_test_noisy_mean{i,1}= x_test_noisy{i,1}-mean(x_test_noisy{i,1}(:));
+        x_test_noisy_mean{i,1} = x_test_noisy{i,1}-mean(x_test_noisy{i,1}(:));
     end
     params = [];
     params.Ytrain = x_test_noisy_mean;
@@ -66,7 +66,7 @@ if (TrainOn)
     params.Train_on = true(1);
     
     [~,~,~,~,~,~,D_noisy] = LoBCoD(params);
-    save('D_noisy.mat');
+    save('D_noisy.mat','D_noisy');
 else
     load('D_noisy.mat')
 end
@@ -142,8 +142,8 @@ end
 fprintf('Average PSNR = %.3f\n',sum_denoised_psnr/(size(x_test,1)));
 
 figure;
-subplot(1,3,1); imshow(x_test{1,1}); title('original');
-subplot(1,3,2); imshow(1-x_test_noisy{1,1}); title('noisy');
-subplot(1,3,3); imshow(x_denoised{1,1}); title('denoised');
+subplot(1,3,1); imshow(x_test{1,1}); title('original','fontsize',14);
+subplot(1,3,2); imshow(1-x_test_noisy{1,1}); title('noisy','fontsize',14);
+subplot(1,3,3); imshow(x_denoised{1,1}); title('denoised','fontsize',14);
 
 
