@@ -44,20 +44,20 @@ This package contains the following main modules:
 
 The training curves of the LoBCoD algorithm using `Demo.m` (trained on the _Fruit_ dataset):
 <p align="center">
-  <img src="./batch_training_set.png">
+  <img src="./figures/batch_training_set.png">
 </p>
 
 The converging objective value of the test set using `Demo_online.m` (trained on a subset of _mirflickr_ dataset): 
 <p align="center">
-  <img width="520" height="380" src="./Online_test_set.png">
+  <img width="520" height="380" src="./figures/Online_test_set.png">
 </p>
 
 Example of inpainting of the corrupted _Barbara_ image using `Demo_inpainting.m`:
 <p align="center">
-  <img src="./inpainting.png">
+  <img src="./figures/inpainting.png">
 </p>
 
 Example of multi-focus image fusion of the images _Bird_ (background and foreground in-focus) using `Demo_Multi_Focus_Fusion.m`:
 <p align="center">
-  <img src="./bird.png">
+  <img src="./figures/bird.png">
 </p>
