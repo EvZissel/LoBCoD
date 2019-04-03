@@ -128,6 +128,6 @@ ours_lab(:,:,3) = (A{1}>=(A{2}+epsilon)).*double(I_lab{1}(:,:,3))+(A{1}<(A{2}+ep
 %%
 
 figure; 
-subplot(1, 3,1);  imshow(uint8(I_org{1})); title('Underexposured image'); axis off
-subplot(1, 3,2); imshow(uint8(I_org{2})); title('Overexposured image'); axis off
+subplot(1, 3,1);  imshow(uint8(I_org{1})); title('Underexposed image'); axis off
+subplot(1, 3,2); imshow(uint8(I_org{2})); title('Overexposed image'); axis off
 subplot(1, 3,3); imshow(uint8(lab2rgb(ours_lab)));  title('fused image'); axis off
