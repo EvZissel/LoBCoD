@@ -34,7 +34,7 @@ I_lab{1} = rgb2lab(I_org{1});
 I_lab{2} = rgb2lab(I_org{2});
 
 
-load('C:\Users\ev_zis\Desktop\LoBCoD\datasets\Multi_Exposure\param.mat');
+load('datasets\Multi_Exposure\param.mat');
 lambda =1;
 mu = 5;
 n =  sqrt(size(D_init,1));
