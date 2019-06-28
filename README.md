@@ -1,11 +1,23 @@
 # LoBCoD
 A Local Block Coordinate Descent Algorithm for the CSC Model
 
-This is the Matlab package that implements the LoBCoD algorithm, presented in [arXiv:1811.00312](https://arxiv.org/abs/1811.00312)
+This is the Matlab package that implements the LoBCoD algorithm.
 ```
 E. Zisselman, J. Sulam and M. Elad, "A Local Block Coordinate Descent Algorithm
-for the Convolutional Sparse Coding Model". 
+for the Convolutional Sparse Coding Model". CVPR 2019.
 ``` 
+[paper](http://openaccess.thecvf.com/content_CVPR_2019/papers/Zisselman_A_Local_Block_Coordinate_Descent_Algorithm_for_the_CSC_Model_CVPR_2019_paper.pdf) [supp](http://openaccess.thecvf.com/content_CVPR_2019/supplemental/Zisselman_A_Local_Block_CVPR_2019_supplemental.pdf) [arXiv](https://arxiv.org/abs/1811.00312)
+
+## Citing LoBCoD
+```
+@InProceedings{Zisselman_2019_CVPR,
+	author = {Zisselman, Ev and Sulam, Jeremias and Elad, Michael},
+	title = {A Local Block Coordinate Descent Algorithm for the CSC Model},
+	booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+	month = {June},
+	year = {2019}
+}
+```
 
 ## Installation
 
