@@ -11,11 +11,11 @@ for the Convolutional Sparse Coding Model". CVPR 2019.
 ## Citing LoBCoD
 ```
 @InProceedings{Zisselman_2019_CVPR,
-	author = {Zisselman, Ev and Sulam, Jeremias and Elad, Michael},
-	title = {A Local Block Coordinate Descent Algorithm for the CSC Model},
-	booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
-	month = {June},
-	year = {2019}
+    author = {Zisselman, Ev and Sulam, Jeremias and Elad, Michael},
+    title = {A Local Block Coordinate Descent Algorithm for the CSC Model},
+    booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month = {June},
+    year = {2019}
 }
 ```
 
